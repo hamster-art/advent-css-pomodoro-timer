@@ -1,11 +1,31 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   const startBtn = document.querySelector('.start-btn'),
     settingsBtn = document.querySelector('.settings-btn'),
-    timeValues = document.querySelectorAll('.time-value');
+    timeValues = document.querySelectorAll('.time-value'),
+    minutes = document.querySelector('.minutes'),
+    seconds = document.querySelector('.seconds');
+  let countdown;
+
+  function countDown() {
+    let timeMinutes = parseInt(minutes.innerHTML);
+    let timeSeconds = parseInt(seconds.innerHTML);
+    if (timeSeconds === 0) {
+      timeMinutes -= 1;
+      timeSeconds = 60;
+    } else {
+      timeSeconds -= 1;
+    }
+    minutes.innerHTML = timeMinutes;
+    seconds.innerHTML = timeSeconds;
+  }
 
   function clickOnStartBtn() {
     if (startBtn.innerHTML === 'start') {
       startBtn.innerHTML = 'stop';
+      clearInterval(countdown);
+      countdown = setInterval(() => {
+        countDown();
+      }, 1000);
     } else {
       startBtn.innerHTML = 'start';
     }
