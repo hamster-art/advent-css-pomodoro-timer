@@ -2,17 +2,23 @@
   <head>
     <meta charset="UTF-8" />
     <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" type="text/css" href="styles.scss" />
   </head>
   <body>
     <div class="timer">
       <div class="time">
-        <input class="time-value" type="number" value="15" />
+        <div contenteditable="false" class="time-value minutes">15</div>
         :
-        <input class="time-value" type="number" value="00" />
+        <div contenteditable="false" class="time-value seconds">00</div>
       </div>
-      <button class="start-btn" type="button">START</button>
-      <button class="settings-btn" type="button"></button>
+      <button class="start-btn" type="button">start</button>
+      <button class="settings-btn edit" type="button"></button>
     </div>
   </body>
 </html>
