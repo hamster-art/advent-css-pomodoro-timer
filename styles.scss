@@ -1,3 +1,17 @@
 body {
   background: #2b2a30;
 }
+
+.timer {
+  width: 518px;
+  height: 518px;
+  border-radius: 50%;
+  background: radial-gradient(
+    71.4% 71.4% at 51.7% 28.6%,
+    #3a393f 0%,
+    #17171a 100%
+  );
+  box-shadow: inset 0px 0px 114px rgba(77, 77, 77, 0.45), -5px 14px 44px #000000,
+    5px -16px 50px rgba(255, 255, 255, 0.15);
+  border: 9px solid #000;
+}
