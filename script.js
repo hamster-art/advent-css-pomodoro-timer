@@ -1,22 +1,26 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-  const startBtn = document.querySelector('.start-btn'),
-    settingsBtn = document.querySelector('.settings-btn'),
-    timeValues = document.querySelectorAll('.time-value'),
-    minutes = document.querySelector('.minutes'),
-    seconds = document.querySelector('.seconds');
+  const timer = document.querySelector('.timer'),
+    startBtn = timer.querySelector('.start-btn'),
+    settingsBtn = timer.querySelector('.settings-btn'),
+    minutesBox = timer.querySelector('.minutes'),
+    secondsBox = timer.querySelector('.seconds');
   let countdown;
 
   function countDown() {
-    let timeMinutes = parseInt(minutes.innerHTML);
-    let timeSeconds = parseInt(seconds.innerHTML);
-    if (timeSeconds === 0) {
-      timeMinutes -= 1;
-      timeSeconds = 60;
+    let minutes = parseInt(minutesBox.innerHTML);
+    let seconds = parseInt(secondsBox.innerHTML);
+    if (seconds === 0 && minutes !== 0) {
+      minutes -= 1;
+      seconds = 59;
+    } else if (seconds === 0 && minutes === 0) {
+      timer.style.borderColor = '#00aa51';
+      startBtn.innerHTML = 'start';
+      clearInterval(countdown);
     } else {
-      timeSeconds -= 1;
+      seconds -= 1;
     }
-    minutes.innerHTML = timeMinutes;
-    seconds.innerHTML = timeSeconds;
+    minutesBox.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+    secondsBox.innerHTML = seconds < 10 ? '0' + seconds : seconds;
   }
 
   function clickOnStartBtn() {
@@ -28,6 +32,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       }, 1000);
     } else {
       startBtn.innerHTML = 'start';
+      clearInterval(countdown);
     }
   }
   startBtn.addEventListener('click', clickOnStartBtn);
@@ -36,15 +41,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (settingsBtn.classList.contains('edit')) {
       settingsBtn.classList.remove('edit');
       settingsBtn.classList.add('confirm');
-      timeValues.forEach((item) => {
-        item.setAttribute('contenteditable', 'true');
-      });
+      minutesBox.setAttribute('contenteditable', 'true');
+      secondsBox.setAttribute('contenteditable', 'true');
     } else {
       settingsBtn.classList.remove('confirm');
       settingsBtn.classList.add('edit');
-      timeValues.forEach((item) => {
-        item.setAttribute('contenteditable', 'false');
-      });
+      minutesBox.setAttribute('contenteditable', 'false');
+      secondsBox.setAttribute('contenteditable', 'false');
     }
   }
   settingsBtn.addEventListener('click', clickOnSettingsBtn);
