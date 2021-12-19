@@ -16,8 +16,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
       timer.style.borderColor = '#00aa51';
       startBtn.innerHTML = 'start';
       clearInterval(countdown);
+      alert('Count is over');
     } else {
       seconds -= 1;
+      timer.style.borderColor = '#9d0000';
     }
     minutesBox.innerHTML = minutes < 10 ? '0' + minutes : minutes;
     secondsBox.innerHTML = seconds < 10 ? '0' + seconds : seconds;
